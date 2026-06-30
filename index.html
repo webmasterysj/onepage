@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>미래를 선도하는 올라운더 인재 | AI콘텐츠과</title>
+  <meta name="description" content="제주 지역 소규모 업체를 위한 기획, 디자인, 홍보, 소프트웨어 개발까지 AI와 협업하는 올라운더 인재를 양성하는 AI콘텐츠과를 소개합니다.">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* Reset & Custom Variables */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg-dark: #070714;
+      --bg-card: rgba(255, 255, 255, 0.03);
+      --bg-card-hover: rgba(255, 255, 255, 0.07);
+      --border-color: rgba(255, 255, 255, 0.08);
+      --border-hover: rgba(255, 255, 255, 0.2);
+      --text-main: #f3f4f6;
+      --text-muted: #9ca3af;
+      
+      /* Neon Gradients */
+      --primary-gradient: linear-gradient(135deg, #a855f7 0%, #6366f1 50%, #3b82f6 100%);
+      --accent-gradient: linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%);
+      --glow-pink: #ec4899;
+      --glow-purple: #8b5cf6;
+      --glow-cyan: #06b6d4;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-family: 'Noto Sans KR', 'Outfit', sans-serif;
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('./ai_content_bg.png');
+      background-size: cover;
+      background-position: center;
+      opacity: 0.12;
+      z-index: -2;
+      pointer-events: none;
+    }
+
+    /* Ambient Background Orbs */
+    .bg-blobs {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(120px);
+      opacity: 0.18;
+      animation: float 25s infinite alternate ease-in-out;
+    }
+
+    .blob-1 {
+      top: -10%;
+      left: -10%;
+      width: 50vw;
+      height: 50vw;
+      background: var(--glow-purple);
+      animation-duration: 20s;
+    }
+
+    .blob-2 {
+      bottom: -10%;
+      right: -10%;
+      width: 60vw;
+      height: 60vw;
+      background: var(--glow-cyan);
+      animation-duration: 30s;
+    }
+
+    .blob-3 {
+      top: 40%;
+      left: 30%;
+      width: 35vw;
+      height: 35vw;
+      background: var(--glow-pink);
+      animation-duration: 25s;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translate(0, 0) scale(1) rotate(0deg);
+      }
+      50% {
+        transform: translate(5%, 10%) scale(1.1) rotate(180deg);
+      }
+      100% {
+        transform: translate(-5%, -5%) scale(0.9) rotate(360deg);
+      }
+    }
+
+    /* Layout & Sections */
+    section {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 6% 8%;
+      position: relative;
+    }
+
+    /* Hero Section */
+    #hero {
+      text-align: center;
+      justify-content: center;
+      padding-top: 8vh;
+      padding-bottom: 8vh;
+      gap: 3rem;
+    }
+
+    .hero-content {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .brand-tag {
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.25em;
+      background: var(--accent-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 2rem;
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      border: 1px solid rgba(6, 182, 212, 0.2);
+      border-radius: 50px;
+      background-color: rgba(6, 182, 212, 0.05);
+      animation: fadeIn 1s ease-out;
+    }
+
+    .hero-title {
+      font-family: 'Outfit', 'Noto Sans KR', sans-serif;
+      font-size: clamp(2.5rem, 5vw, 4.5rem);
+      font-weight: 800;
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.5rem;
+      animation: fadeInUp 1.2s ease-out;
+    }
+
+    .hero-title span {
+      background: var(--primary-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: inline-block;
+    }
+
+    .hero-summary {
+      font-size: clamp(1.05rem, 1.8vw, 1.3rem);
+      line-height: 1.7;
+      color: var(--text-main);
+      max-width: 850px;
+      margin: 0 auto 3.5rem auto;
+      text-align: center;
+      word-break: keep-all;
+      opacity: 0.95;
+      animation: fadeInUp 1.4s ease-out;
+    }
+
+    /* Feature Diagram Grid */
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      width: 100%;
+      margin-bottom: 2rem;
+      animation: fadeInUp 1.6s ease-out;
+    }
+
+    .feature-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 24px;
+      padding: 3rem 2rem;
+      backdrop-filter: blur(10px);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    }
+
+    .feature-card:hover {
+      transform: translateY(-6px);
+      background: var(--bg-card-hover);
+      border-color: var(--border-hover);
+      box-shadow: 0 20px 40px rgba(99, 102, 241, 0.15);
+    }
+
+    .feature-icon {
+      width: 64px;
+      height: 64px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, rgba(168, 85, 247, 0.12) 0%, rgba(99, 102, 241, 0.12) 100%);
+      border: 1px solid rgba(168, 85, 247, 0.25);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 1.8rem;
+      color: #a855f7;
+      transition: all 0.3s;
+    }
+
+    .feature-card:hover .feature-icon {
+      color: #fff;
+      background: var(--primary-gradient);
+      border-color: transparent;
+      box-shadow: 0 0 15px rgba(168, 85, 247, 0.4);
+      transform: scale(1.1) rotate(5deg);
+    }
+
+    .feature-icon svg {
+      width: 30px;
+      height: 30px;
+    }
+
+    .feature-card h3 {
+      font-size: 1.35rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: var(--text-main);
+    }
+
+    .feature-card p {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+      word-break: keep-all;
+    }
+
+    .hero-description p {
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-description p:last-child {
+      margin-bottom: 0;
+    }
+
+    .highlight-gradient {
+      background: linear-gradient(120deg, #a855f7, #6366f1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: 700;
+    }
+
+    .highlight-cyan {
+      background: linear-gradient(120deg, #06b6d4, #3b82f6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: 700;
+    }
+
+    .scroll-indicator {
+      margin-top: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+      transition: color 0.3s;
+      animation: bounce 2s infinite;
+    }
+
+    .scroll-indicator:hover {
+      color: var(--text-main);
+    }
+
+    .scroll-indicator svg {
+      width: 20px;
+      height: 20px;
+      stroke: currentColor;
+    }
+
+    /* Video Section */
+    #videos {
+      background-color: rgba(7, 7, 20, 0.5);
+    }
+
+    .section-title {
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      font-weight: 800;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+
+    .section-subtitle {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      margin-bottom: 4rem;
+      text-align: center;
+    }
+
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+      gap: 2.5rem;
+      width: 100%;
+      max-width: 1200px;
+    }
+
+    .video-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .video-card:hover {
+      transform: translateY(-8px);
+      background: var(--bg-card-hover);
+      border-color: var(--border-hover);
+      box-shadow: 0 20px 40px rgba(139, 92, 246, 0.15);
+    }
+
+    .thumbnail-wrapper {
+      position: relative;
+      width: 100%;
+      padding-top: 56.25%; /* 16:9 Aspect Ratio */
+      background-color: #000;
+      overflow: hidden;
+    }
+
+    .thumbnail-wrapper video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+      pointer-events: none; /* JS hover로 제어하므로 클릭이벤트를 카드가 받도록 함 */
+    }
+
+    .video-card:hover .thumbnail-wrapper video {
+      transform: scale(1.05);
+    }
+
+    /* Play Icon Overlay on Thumbnail */
+    .play-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.4);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 1;
+      transition: background 0.3s, opacity 0.3s;
+      z-index: 2;
+    }
+
+    .video-card:hover .play-overlay {
+      background: rgba(0, 0, 0, 0.15);
+    }
+
+    .play-btn-circle {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      backdrop-filter: blur(10px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      color: #fff;
+    }
+
+    .play-btn-circle svg {
+      width: 24px;
+      height: 24px;
+      fill: currentColor;
+      transform: translateX(2px);
+    }
+
+    .video-card:hover .play-btn-circle {
+      transform: scale(1.15);
+      background: #fff;
+      color: var(--bg-dark);
+      border-color: #fff;
+      box-shadow: 0 0 25px rgba(255, 255, 255, 0.5);
+    }
+
+    /* Card Details */
+    .card-info {
+      padding: 1.8rem;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .card-tag {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #8b5cf6;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.6rem;
+    }
+
+    .card-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      line-height: 1.4;
+      margin-bottom: 0.8rem;
+      color: var(--text-main);
+      transition: color 0.3s;
+    }
+
+    .video-card:hover .card-title {
+      color: #fff;
+    }
+
+    .card-description {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      word-break: keep-all;
+    }
+
+    /* Fullscreen Modal Player */
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1000;
+      background-color: rgba(3, 3, 10, 0.95);
+      backdrop-filter: blur(15px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s ease;
+      padding: 20px;
+    }
+
+    .modal.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-container {
+      width: 100%;
+      max-width: 1100px;
+      aspect-ratio: 16/9;
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transform: scale(0.95);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .modal.active .modal-container {
+      transform: scale(1);
+    }
+
+    .modal-container video {
+      width: 100%;
+      height: 100%;
+      display: block;
+      background-color: #000;
+    }
+
+    /* Modal Close Button */
+    .close-btn {
+      position: absolute;
+      top: 30px;
+      right: 40px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #fff;
+      padding: 0.8rem 1.4rem;
+      border-radius: 50px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      backdrop-filter: blur(10px);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 1010;
+    }
+
+    .close-btn svg {
+      width: 18px;
+      height: 18px;
+      stroke: currentColor;
+      transition: transform 0.3s;
+    }
+
+    .close-btn:hover {
+      background: #fff;
+      color: var(--bg-dark);
+      border-color: #fff;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(255, 255, 255, 0.2);
+    }
+
+    .close-btn:hover svg {
+      transform: rotate(90deg);
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+      }
+      40% {
+        transform: translateY(-10px);
+      }
+      60% {
+        transform: translateY(-5px);
+      }
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      section {
+        padding: 10% 5%;
+      }
+
+      #hero {
+        padding-top: 6vh;
+        justify-content: center;
+        gap: 2rem;
+      }
+
+      .hero-summary {
+        margin-bottom: 2rem;
+      }
+
+      .feature-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      .feature-card {
+        padding: 2.2rem 1.5rem;
+      }
+
+      .video-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .close-btn {
+        top: 20px;
+        right: 20px;
+        padding: 0.6rem 1rem;
+        font-size: 0.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Ambient Dynamic Background -->
+  <div class="bg-blobs">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+  </div>
+
+  <!-- Hero Section -->
+  <section id="hero">
+    <div class="hero-content">
+      <div class="brand-tag">한국폴리텍대학 제주캠퍼스 AI콘텐츠과</div>
+      <h1 class="hero-title">생성형 AI로 미래를 리드하는<br><span>초협업 1인 멀티플레이어</span> 양성</h1>
+      
+      <p class="hero-summary">
+        우리는 제주 지역 소규모 업체의 요구에 딱 맞춘 디자인, 홍보, 그리고 소프트웨어 개발 융합형 올라운더 인재를 키웁니다.
+      </p>
+
+      <!-- 시각적 도식화 (3 Core Pillars) -->
+      <div class="feature-grid">
+        <!-- Pillar 1 -->
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+            </svg>
+          </div>
+          <h3>1인 멀티플레이어</h3>
+          <p><strong>기획 + 설계 + 디자인 + 모델링 + 홍보 + 개발</strong>까지 일당백 역량을 갖추어 소규모 업체의 여러 가지 업무를 혼자서 주도적으로 해결합니다.</p>
+        </div>
+
+        <!-- Pillar 2 -->
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+            </svg>
+          </div>
+          <h3>생성형 AI 초협업</h3>
+          <p>생성형 AI를 업무 파트너로 결합하는 혁신적인 트렌드를 교육하여, <strong>기존 대비 몇 배 이상의 작업 속도와 생산성</strong>을 달성합니다.</p>
+        </div>
+
+        <!-- Pillar 3 -->
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5" />
+            </svg>
+          </div>
+          <h3>독보적인 고용 만족도</h3>
+          <p>제주 소상공인 및 소규모 업체의 실전 수요에 맞춰 즉각 투입 가능하므로, <strong>채용한 기업들의 만족도가 극도로 높습니다.</strong></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scroll Down Icon Indicator -->
+    <a href="#videos" class="scroll-indicator">
+      <span>홍보 영상 감상하기</span>
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+      </svg>
+    </a>
+  </section>
+
+  <!-- Video Section -->
+  <section id="videos">
+    <h2 class="section-title">학과 홍보 및 작품 영상</h2>
+    <p class="section-subtitle">학생들이 AI 협업을 통해 기획부터 제작까지 완성도 있게 구현한 영상 결과물입니다.</p>
+
+    <div class="video-grid">
+      <!-- Video Card 1 -->
+      <div class="video-card" data-video-src="./김대호_기말완성수정.mp4" data-title="김대호 학생 기말 프로젝트 작품">
+        <div class="thumbnail-wrapper">
+          <!-- hover시 프리뷰 재생을 위한 video 요소 (preload metadata, muted) -->
+          <video src="./김대호_기말완성수정.mp4#t=0.5" muted preload="metadata" playsinline loop></video>
+          <div class="play-overlay">
+            <div class="play-btn-circle">
+              <svg viewBox="0 0 24 24">
+                <path d="M8 5v14l11-7z"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div class="card-info">
+          <div class="card-tag">Project Work</div>
+          <h3 class="card-title">김대호 학생 기말 발표작</h3>
+          <p class="card-description">기획 단계부터 스토리보드 구축, AI 모델링 툴 및 비주얼 제너레이터를 활용하여 완성한 고품격 기말 프로젝트 영상입니다.</p>
+        </div>
+      </div>
+
+      <!-- Video Card 2 -->
+      <div class="video-card" data-video-src="./폴리텍인터뷰_김은정.mp4" data-title="김은정 학생 폴리텍 인터뷰 영상">
+        <div class="thumbnail-wrapper">
+          <video src="./폴리텍인터뷰_김은정.mp4#t=0.5" muted preload="metadata" playsinline loop></video>
+          <div class="play-overlay">
+            <div class="play-btn-circle">
+              <svg viewBox="0 0 24 24">
+                <path d="M8 5v14l11-7z"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div class="card-info">
+          <div class="card-tag">Student Interview</div>
+          <h3 class="card-title">김은정 학생 인터뷰 영상</h3>
+          <p class="card-description">AI콘텐츠과 교육 과정 및 실제 프로젝트 수행 경험, 그리고 지역사회 협업 과정에 대한 생생한 후기를 전하는 인터뷰 영상입니다.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Fullscreen Modal Video Player Overlay -->
+  <div class="modal" id="videoModal">
+    <button class="close-btn" id="closeBtn">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+      <span>닫기</span>
+    </button>
+    <div class="modal-container">
+      <video id="modalVideo" controls autoplay playsinline></video>
+    </div>
+  </div>
+
+  <script>
+    // --- 1. Video Card Hover Hover Interaction (Muted Preview) ---
+    const videoCards = document.querySelectorAll('.video-card');
+
+    videoCards.forEach(card => {
+      const previewVideo = card.querySelector('.thumbnail-wrapper video');
+      
+      card.addEventListener('mouseenter', () => {
+        // 호버 시 오디오 끄고 재생
+        previewVideo.muted = true;
+        
+        // play()가 프로미스를 반환하므로 안전하게 처리
+        const playPromise = previewVideo.play();
+        if (playPromise !== undefined) {
+          playPromise.catch(error => {
+            // 자동 재생 에러 처리 (사용자 제스처 미발생 등으로 발생 가능)
+            console.log("Preview autoplay prevented: ", error);
+          });
+        }
+      });
+
+      card.addEventListener('mouseleave', () => {
+        // 호버 해제 시 일시정지 및 영상 처음으로
+        previewVideo.pause();
+        previewVideo.currentTime = 0.5; // 원래의 썸네일 포지션으로 되돌리기
+      });
+    });
+
+
+    // --- 2. Fullscreen Video Modal Player ---
+    const modal = document.getElementById('videoModal');
+    const modalVideo = document.getElementById('modalVideo');
+    const closeBtn = document.getElementById('closeBtn');
+
+    // 비디오 카드 클릭 이벤트 등록
+    videoCards.forEach(card => {
+      card.addEventListener('click', () => {
+        const videoSrc = card.getAttribute('data-video-src');
+        
+        // 모달 비디오 소스 할당 및 속성 설정
+        modalVideo.src = videoSrc;
+        modalVideo.muted = false; // 소리 켬
+        modalVideo.controls = true;
+
+        // 모달 활성화
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden'; // 뒤 스크롤 방지
+
+        // 전체화면 플레이어 재생 시작
+        modalVideo.play().catch(error => {
+          console.log("Modal play prevented: ", error);
+        });
+      });
+    });
+
+    // 모달 닫기 로직 함수
+    function closeModal() {
+      modal.classList.remove('active');
+      document.body.style.overflow = 'auto'; // 뒤 스크롤 허용
+      
+      // 영상 멈추고 리소스 정리
+      modalVideo.pause();
+      modalVideo.src = "";
+    }
+
+    // 닫기 버튼 이벤트
+    closeBtn.addEventListener('click', closeModal);
+
+    // 모달 바깥 어두운 배경 클릭 시 닫기
+    modal.addEventListener('click', (e) => {
+      // 클릭한 대상이 modal 컨테이너 자체이거나 닫기 관련인 경우 닫음 (비디오 본체 클릭은 차단)
+      if (e.target === modal) {
+        closeModal();
+      }
+    });
+
+    // Esc 키보드 누르면 모달 닫기
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.classList.contains('active')) {
+        closeModal();
+      }
+    });
+  </script>
+</body>
+</html>
