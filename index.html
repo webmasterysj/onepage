@@ -699,10 +699,9 @@
 
     <div class="video-grid">
       <!-- Video Card 1 -->
-      <div class="video-card" data-video-src="./김대호_기말완성수정.mp4" data-title="김대호 학생 기말 프로젝트 작품">
-        <div class="thumbnail-wrapper">
-          <!-- hover시 프리뷰 재생을 위한 video 요소 (preload metadata, muted) -->
-          <video src="./김대호_기말완성수정.mp4#t=0.5" muted preload="metadata" playsinline loop></video>
+      <div class="video-card" data-video-src="https://drive.google.com/file/d/1PW6geGcyEPx1FrII8TlkAlX91SXfWstH/preview" data-title="김대호 학생 기말 프로젝트 작품">
+        <div class="thumbnail-wrapper" style="background-image: url('./ai_content_bg.png'); background-size: cover; background-position: center;">
+          <div style="position: absolute; top:0; left:0; width:100%; height:100%; background: linear-gradient(135deg, rgba(168,85,247,0.3) 0%, rgba(99,102,241,0.3) 100%); z-index: 1;"></div>
           <div class="play-overlay">
             <div class="play-btn-circle">
               <svg viewBox="0 0 24 24">
@@ -719,9 +718,9 @@
       </div>
 
       <!-- Video Card 2 -->
-      <div class="video-card" data-video-src="./폴리텍인터뷰_김은정.mp4" data-title="김은정 학생 폴리텍 인터뷰 영상">
-        <div class="thumbnail-wrapper">
-          <video src="./폴리텍인터뷰_김은정.mp4#t=0.5" muted preload="metadata" playsinline loop></video>
+      <div class="video-card" data-video-src="https://drive.google.com/file/d/1pBTnJEec5JbyhJulfQlA0wqUqM49Gn-T/preview" data-title="김은정 학생 폴리텍 인터뷰 영상">
+        <div class="thumbnail-wrapper" style="background-image: url('./ai_content_bg.png'); background-size: cover; background-position: center; filter: hue-rotate(90deg);">
+          <div style="position: absolute; top:0; left:0; width:100%; height:100%; background: linear-gradient(135deg, rgba(6,182,212,0.3) 0%, rgba(59,130,246,0.3) 100%); z-index: 1;"></div>
           <div class="play-overlay">
             <div class="play-btn-circle">
               <svg viewBox="0 0 24 24">
@@ -748,42 +747,15 @@
       <span>닫기</span>
     </button>
     <div class="modal-container">
-      <video id="modalVideo" controls autoplay playsinline></video>
+      <iframe id="modalIframe" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen style="width: 100%; height: 100%; border: none;"></iframe>
     </div>
   </div>
 
   <script>
-    // --- 1. Video Card Hover Hover Interaction (Muted Preview) ---
+    // --- 1. Video Card Setup & Click Interaction ---
     const videoCards = document.querySelectorAll('.video-card');
-
-    videoCards.forEach(card => {
-      const previewVideo = card.querySelector('.thumbnail-wrapper video');
-      
-      card.addEventListener('mouseenter', () => {
-        // 호버 시 오디오 끄고 재생
-        previewVideo.muted = true;
-        
-        // play()가 프로미스를 반환하므로 안전하게 처리
-        const playPromise = previewVideo.play();
-        if (playPromise !== undefined) {
-          playPromise.catch(error => {
-            // 자동 재생 에러 처리 (사용자 제스처 미발생 등으로 발생 가능)
-            console.log("Preview autoplay prevented: ", error);
-          });
-        }
-      });
-
-      card.addEventListener('mouseleave', () => {
-        // 호버 해제 시 일시정지 및 영상 처음으로
-        previewVideo.pause();
-        previewVideo.currentTime = 0.5; // 원래의 썸네일 포지션으로 되돌리기
-      });
-    });
-
-
-    // --- 2. Fullscreen Video Modal Player ---
     const modal = document.getElementById('videoModal');
-    const modalVideo = document.getElementById('modalVideo');
+    const modalIframe = document.getElementById('modalIframe');
     const closeBtn = document.getElementById('closeBtn');
 
     // 비디오 카드 클릭 이벤트 등록
@@ -791,19 +763,12 @@
       card.addEventListener('click', () => {
         const videoSrc = card.getAttribute('data-video-src');
         
-        // 모달 비디오 소스 할당 및 속성 설정
-        modalVideo.src = videoSrc;
-        modalVideo.muted = false; // 소리 켬
-        modalVideo.controls = true;
+        // 모달 iframe에 프리뷰 플레이어 경로 할당
+        modalIframe.src = videoSrc;
 
         // 모달 활성화
         modal.classList.add('active');
         document.body.style.overflow = 'hidden'; // 뒤 스크롤 방지
-
-        // 전체화면 플레이어 재생 시작
-        modalVideo.play().catch(error => {
-          console.log("Modal play prevented: ", error);
-        });
       });
     });
 
@@ -812,9 +777,8 @@
       modal.classList.remove('active');
       document.body.style.overflow = 'auto'; // 뒤 스크롤 허용
       
-      // 영상 멈추고 리소스 정리
-      modalVideo.pause();
-      modalVideo.src = "";
+      // 영상 멈추기 위해 iframe src 초기화
+      modalIframe.src = "";
     }
 
     // 닫기 버튼 이벤트
@@ -822,7 +786,6 @@
 
     // 모달 바깥 어두운 배경 클릭 시 닫기
     modal.addEventListener('click', (e) => {
-      // 클릭한 대상이 modal 컨테이너 자체이거나 닫기 관련인 경우 닫음 (비디오 본체 클릭은 차단)
       if (e.target === modal) {
         closeModal();
       }
