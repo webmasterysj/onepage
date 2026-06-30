@@ -625,9 +625,75 @@
         font-size: 0.8rem;
       }
     }
+
+    /* VIP Welcome Banner */
+    .vip-welcome-banner {
+      width: 100%;
+      background: linear-gradient(90deg, rgba(217, 119, 6, 0.18) 0%, rgba(251, 191, 36, 0.08) 50%, rgba(217, 119, 6, 0.18) 100%);
+      border-bottom: 1px solid rgba(251, 191, 36, 0.25);
+      padding: 0.9rem 1rem;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+      animation: slideDown 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .vip-welcome-content {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: clamp(0.95rem, 1.5vw, 1.1rem);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: #fbbf24;
+      text-shadow: 0 0 10px rgba(251, 191, 36, 0.3);
+    }
+
+    .welcome-icon {
+      width: 20px;
+      height: 20px;
+      color: #fbbf24;
+      animation: pulse 2s infinite alternate ease-in-out;
+    }
+
+    @keyframes slideDown {
+      from {
+        transform: translateY(-100%);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+        filter: drop-shadow(0 0 2px rgba(251, 191, 36, 0.4));
+      }
+      100% {
+        transform: scale(1.12);
+        filter: drop-shadow(0 0 8px rgba(251, 191, 36, 0.8));
+      }
+    }
   </style>
 </head>
 <body>
+
+  <!-- VIP Welcome Banner -->
+  <div class="vip-welcome-banner">
+    <div class="vip-welcome-content">
+      <svg class="welcome-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+      </svg>
+      <span>제주대학교 총장님의 방문을 진심으로 환영합니다.</span>
+    </div>
+  </div>
 
   <!-- Ambient Dynamic Background -->
   <div class="bg-blobs">
